@@ -10,7 +10,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     importProvidersFrom(CookieService),
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withXhr() , withInterceptors(headerInterceptor())),
-    provideRouter(routes , withViewTransitions() , withInMemoryScrolling()), provideClientHydration()
+    provideHttpClient(withXhr() , withInterceptors([headerInterceptor])),
+    provideRouter(routes , withViewTransitions() , withInMemoryScrolling({scrollPositionRestoration:'top' , anchorScrolling:'enabled'})), provideClientHydration()
   ]
 };

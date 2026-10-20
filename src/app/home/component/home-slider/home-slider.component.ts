@@ -1,4 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, signal } from '@angular/core';
+import { single } from 'rxjs';
 
 @Component({
   imports: [],
@@ -7,4 +8,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   templateUrl: './home-slider.component.html',
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
-export class HomeSliderComponent {}
+export class HomeSliderComponent {
+
+}

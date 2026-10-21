@@ -1,6 +1,20 @@
 .item{
     background-image: linear-gradient(to right , #00c758e6 , #05df7280) , url(/image/home-slider-1.d79601a8.png) ;
-    min-height: 80vh;
+    min-height: 60vh;
     background-position: center;
     background-size: cover;
 }
+swiper-container::part(button-prev),
+swiper-container::part(button-next){
+background-color: white;
+padding: 10px;
+height: 15px;
+width: 15px;
+border-radius: 50%;
+}
+
+swiper-container::part(bullet),
+swiper-container::part(bullet-active){
+  background-color: white;
+}
+

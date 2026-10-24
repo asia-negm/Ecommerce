@@ -1,1 +1,130 @@
-<p>register works!</p>
+<main class="bg-white text-slate-800">
+  <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-10 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:py-16">
+    <section class="mx-auto hidden w-full max-w-lg text-center lg:block" aria-label="Welcome to FreshCart">
+      <img src="/image/grocery-banner.png" alt="A grocery bag filled with fresh fruit and vegetables"
+        class="h-72 w-full rounded-xl object-cover object-right shadow-md" width="500" height="288" />
+      <h2 class="mt-6 text-3xl font-bold leading-tight">FreshCart - Your One-Stop Shop for Fresh Products</h2>
+      <p class="mx-auto mt-4 max-w-md text-base leading-relaxed text-slate-500">Join thousands of happy customers who trust FreshCart for their daily grocery needs.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-6 text-sm text-slate-500">
+        <span><i class="fa-solid fa-truck mr-2 text-green-600" aria-hidden="true"></i>Free Delivery</span>
+        <span><i class="fa-solid fa-shield-halved mr-2 text-green-600" aria-hidden="true"></i>Secure Payment</span>
+        <span><i class="fa-solid fa-headset mr-2 text-green-600" aria-hidden="true"></i>24/7 Support</span>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-md rounded-2xl bg-white px-6 py-8 shadow-[0_6px_24px_rgba(0,0,0,0.09)] sm:px-9" aria-labelledby="register-heading">
+      <div class="mb-7 text-center">
+        <a routerLink="/home" class="text-3xl font-bold tracking-tight" aria-label="FreshCart home"><span class="text-green-600">Fresh</span>Cart</a>
+        <h1 id="register-heading" class="mt-3 text-2xl font-bold">Create your account</h1>
+        <p class="mt-2 text-sm text-slate-500">Join us and start your fresh shopping experience</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="register()" class="space-y-4" [attr.aria-busy]="isLoading()" novalidate>
+        <div>
+          <label for="register-name" class="field-label">Full Name</label>
+          <div class="field-wrap">
+            <i class="fa-regular fa-user field-icon" aria-hidden="true"></i>
+            <input id="register-name" type="text" formControlName="name" autocomplete="name" placeholder="Enter your full name" class="field-input"
+              [attr.aria-invalid]="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" aria-describedby="name-error" required />
+          </div>
+          @if (registerForm.get('name')?.touched && registerForm.get('name')?.invalid) {
+            <p id="name-error" class="field-error">Enter a name of at least 3 letters, starting each word with a capital letter.</p>
+          }
+        </div>
+
+        <div>
+          <label for="register-email" class="field-label">Email Address</label>
+          <div class="field-wrap">
+            <i class="fa-solid fa-envelope field-icon" aria-hidden="true"></i>
+            <input id="register-email" type="email" formControlName="email" autocomplete="email" placeholder="Enter your email" class="field-input"
+              [attr.aria-invalid]="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" aria-describedby="email-error" required />
+          </div>
+          @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+            <p id="email-error" class="field-error">Enter a valid email address.</p>
+          }
+        </div>
+
+        <div>
+          <label for="register-phone" class="field-label">Phone Number</label>
+          <div class="field-wrap">
+            <i class="fa-solid fa-phone field-icon" aria-hidden="true"></i>
+            <input id="register-phone" type="tel" formControlName="phone" autocomplete="tel" placeholder="e.g. 01012345678" class="field-input"
+              [attr.aria-invalid]="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid" aria-describedby="phone-error" required />
+          </div>
+          @if (registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid) {
+            <p id="phone-error" class="field-error">Enter an 11-digit Egyptian mobile number starting with 010, 011, 012, or 015.</p>
+          }
+        </div>
+
+        <div>
+          <label for="register-password" class="field-label">Password</label>
+          <div class="field-wrap">
+            <i class="fa-solid fa-lock field-icon" aria-hidden="true"></i>
+            <input #passwordInput id="register-password" type="password" formControlName="password" autocomplete="new-password" placeholder="Create a password" class="field-input has-toggle"
+              [attr.aria-invalid]="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" aria-describedby="password-hint password-error" required />
+            <button type="button" class="password-toggle" (click)="passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password'"
+              [attr.aria-label]="passwordInput.type === 'password' ? 'Show password' : 'Hide password'" [attr.aria-pressed]="passwordInput.type === 'text'">
+              <i class="fa-regular" [class.fa-eye]="passwordInput.type === 'password'" [class.fa-eye-slash]="passwordInput.type === 'text'" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p id="password-hint" class="mt-1.5 text-xs leading-relaxed text-slate-500">Use 8+ characters with uppercase, lowercase, a number, and a special character.</p>
+          @if (registerForm.get('password')?.touched && registerForm.get('password')?.invalid) {
+            <p id="password-error" class="field-error">Enter a password that meets the requirements above.</p>
+          }
+        </div>
+
+        <div>
+          <label for="register-confirm-password" class="field-label">Confirm Password</label>
+          <div class="field-wrap">
+            <i class="fa-solid fa-lock field-icon" aria-hidden="true"></i>
+            <input #confirmPasswordInput id="register-confirm-password" type="password" formControlName="rePassword" autocomplete="new-password" placeholder="Confirm your password" class="field-input has-toggle"
+              [attr.aria-invalid]="registerForm.get('rePassword')?.touched && (registerForm.get('rePassword')?.invalid || registerForm.hasError('missmatch'))" aria-describedby="confirm-password-error" required />
+            <button type="button" class="password-toggle" (click)="confirmPasswordInput.type = confirmPasswordInput.type === 'password' ? 'text' : 'password'"
+              [attr.aria-label]="confirmPasswordInput.type === 'password' ? 'Show confirmation password' : 'Hide confirmation password'" [attr.aria-pressed]="confirmPasswordInput.type === 'text'">
+              <i class="fa-regular" [class.fa-eye]="confirmPasswordInput.type === 'password'" [class.fa-eye-slash]="confirmPasswordInput.type === 'text'" aria-hidden="true"></i>
+            </button>
+          </div>
+          @if (registerForm.get('rePassword')?.touched) {
+            @if (registerForm.get('rePassword')?.hasError('required')) {
+              <p id="confirm-password-error" class="field-error">Please confirm your password.</p>
+            } @else if (registerForm.hasError('missmatch')) {
+              <p id="confirm-password-error" class="field-error">Your passwords do not match.</p>
+            }
+          }
+        </div>
+
+        @if (resMassage()) {
+          <p role="alert" class="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{{ resMassage() }}</p>
+        }
+
+        <button type="submit" [disabled]="isLoading()" class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-green-600 px-4 py-3 text-base font-semibold text-white shadow-md transition hover:bg-green-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:cursor-wait disabled:opacity-60">
+          @if (isLoading()) {
+            <i class="fa-solid fa-spinner animate-spin" aria-hidden="true"></i>
+            Creating account...
+          } @else {
+            Create Account
+          }
+        </button>
+      </form>
+
+      <p class="mt-6 border-t border-slate-100 pt-5 text-center text-sm text-slate-500">Already have an account? <a routerLink="/login" class="ml-1 font-semibold text-green-700 hover:underline">Sign in</a></p>
+      <p class="mt-5 flex items-center justify-center gap-2 text-xs text-slate-500"><i class="fa-solid fa-lock text-green-600" aria-hidden="true"></i>Your information is safe and secure</p>
+    </section>
+  </div>
+
+  <section class="bg-green-50" aria-label="Shopping benefits">
+    <div class="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-5 py-6 sm:px-8 lg:grid-cols-4">
+      @for (benefit of [
+        { icon: 'fa-truck', title: 'Free Shipping', detail: 'On orders over 500 EGP' },
+        { icon: 'fa-arrow-rotate-left', title: 'Easy Returns', detail: '14-day return policy' },
+        { icon: 'fa-shield-halved', title: 'Secure Payment', detail: '100% secure checkout' },
+        { icon: 'fa-headset', title: '24/7 Support', detail: 'Contact us anytime' }
+      ]; track benefit.title) {
+        <div class="flex items-center gap-3">
+          <span class="flex size-10 shrink-0 items-center justify-center rounded-xl bg-green-100 text-green-600"><i class="fa-solid {{ benefit.icon }}" aria-hidden="true"></i></span>
+          <div><h3 class="text-sm font-semibold">{{ benefit.title }}</h3><p class="text-xs text-slate-500">{{ benefit.detail }}</p></div>
+        </div>
+      }
+    </div>
+  </section>
+</main>

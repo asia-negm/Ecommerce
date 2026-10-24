@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@theme{
+	--main-color : #16a34a ;
+	--second-color: #101828 ;
+}
+
+@utility container{
+	margin-inline: auto :
+}
+
+body{
+	font-family: "Saira Condensed", sans-serif;
+}

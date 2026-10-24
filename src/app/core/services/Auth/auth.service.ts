@@ -11,6 +11,11 @@ export interface SignUpData {
   phone: string;
 }
 
+export interface SignInData {
+  email: string;
+  password: string;
+}
+
 @Service()
 export class AuthService {
   private _HttpClient= inject(HttpClient);
@@ -19,7 +24,7 @@ export class AuthService {
     return this._HttpClient.post(`${environment.baseURL}/api/v1/auth/signup` , formData)
   }
 
-  signIn():Observable<any>{
-    return this._HttpClient.post(`${environment.baseURL}/api/v1/auth/signIn` , FormData)
+  signIn(formData: SignInData):Observable<any>{
+    return this._HttpClient.post(`${environment.baseURL}/api/v1/auth/signin` , formData)
   }
 }

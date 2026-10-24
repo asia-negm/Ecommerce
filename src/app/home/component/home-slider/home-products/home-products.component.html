@@ -10,10 +10,10 @@
     <!-- Products Grid (Tailwind Display Grid) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
       @for(product of  products() ; track product._id ){
-        @if(product.ratingsAverage>4){
+        @if(product.ratingsAverage > 4){
 
           <div [routerLink]="['/p-details' , product.id]"
-              class="group relative bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl p-3.5 shadow-xs hover:shadow-md transition-shadow duration-300 flex flex-col justify-between">
+              class="group relative bg-white border border-gray-100  rounded-2xl p-3.5 shadow-xs hover:shadow-md transition-shadow duration-300 flex flex-col justify-between">
               <!-- Quick Action Icons -->
               <div class="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
                   <button type="button" aria-label="Add to Wishlist"
@@ -46,10 +46,15 @@
                   <!-- Rating -->
                   <div class="flex items-center gap-1 mt-1">
                       <div class="flex items-center text-amber-400 text-xs gap-0.5">
+                        @for( start of [1,2,3,4,5].slice(0, product.ratingsAverage) ; track $index ){
+
                           <i class="fa-solid fa-star"></i>
-                          <i class="fa-regular fa-star text-gray-300 dark:text-gray-600"></i>
+                        }
+                        @if(product.ratingsAverage%1 !=0){
+                          <i class="fa-regular fa-star-half text-gray-300 dark:text-gray-600"></i>
+                        }
                       </div>
-                      <span class="text-xs text-gray-500 dark:text-gray-400 font-medium ml-1">4.1 (46)</span>
+                      <span class="text-xs text-gray-500 dark:text-gray-400 font-medium ml-1">{{product.ratingsAverage}}</span>
                   </div>
 
                   <!-- Price & Add to Cart -->

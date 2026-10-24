@@ -12,7 +12,7 @@ export class ProductsService {
   }
 
   GetSpecificProducts(pId:string):Observable<any>{
-        return this._HttpClient.get(`${environment.baseURL}/api/v1/products${pId}`)
+        return this._HttpClient.get(`${environment.baseURL}/api/v1/products/${pId}`)
 
   }
 }

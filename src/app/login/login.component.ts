@@ -37,6 +37,7 @@ export class LoginComponent {
     this.isLoading.set(true);
     this._AuthService.signIn(this.loginForm.value).subscribe({
       next: (res) => {
+        this._AuthService.isLogging.set(true)
         this.isLoading.set(false);
         if (res.message === 'success' && res.token) {
           this._CookieService.set('token', res.token, { path: '/', sameSite: 'Lax' });

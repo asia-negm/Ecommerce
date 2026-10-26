@@ -176,11 +176,15 @@
                 </a>
 
                 <!-- Sign In Button -->
-                <a routerLink="/login"
-                    class="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-2 shadow-xs hover:shadow transition-all text-sm shrink-0">
-                    <i class="fa-regular fa-user text-sm"></i>
-                    <span>Sign In</span>
-                </a>
+                 @if(!isLogged()){
+                   <a routerLink="/login"
+                       class="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-2 shadow-xs hover:shadow transition-all text-sm shrink-0">
+                       <i class="fa-regular fa-user text-sm"></i>
+                       <span>Sign In</span>
+                   </a>
+                 }@else {
+
+                 }
 
                 <!-- Mobile Menu Button (Hamburger) -->
                 <button type="button" data-collapse-toggle="mobile-navbar-menu"

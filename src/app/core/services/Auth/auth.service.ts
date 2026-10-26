@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Service } from '@angular/core';
+import { inject, Service, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
+import { CookieService } from 'ngx-cookie-service';
+import { jwtDecode } from "jwt-decode";
+
 
 export interface SignUpData {
   name: string;
@@ -19,6 +22,12 @@ export interface SignInData {
 @Service()
 export class AuthService {
   private _HttpClient= inject(HttpClient);
+    private _CookieService = inject(CookieService);
+
+
+
+  isLogging = signal<boolean>(false);
+  userOnfo = signal<any>('')
 
   signUp(formData: SignUpData):Observable<any>{
     return this._HttpClient.post(`${environment.baseURL}/api/v1/auth/signup` , formData)
@@ -26,5 +35,11 @@ export class AuthService {
 
   signIn(formData: SignInData):Observable<any>{
     return this._HttpClient.post(`${environment.baseURL}/api/v1/auth/signin` , formData)
+  }
+
+  decodeToken(){
+ if(this._CookieService.get('userToken')){
+ this.userOnfo.set(jwtDecode(this._CookieService.get('userToken')))
+ }
   }
 }

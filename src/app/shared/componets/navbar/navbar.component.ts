@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit   {
   private _AuthService =inject(AuthService);
   private _CookieService = inject(CookieService);
   isLogged = computed( ()=> this._AuthService.isLogging() )
+  userDetails = computed( ()=> this._AuthService.userOnfo)
 
 
 
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit   {
    ngOnInit(): void {
     if(this._CookieService.get('userToken')){
       this._AuthService.isLogging.set(true)
+      this._AuthService.decodeToken()
     }
     this._Flowbite.loadFlowbite((flowbite) => {
       initFlowbite();

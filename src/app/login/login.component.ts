@@ -41,7 +41,9 @@ export class LoginComponent {
         this.isLoading.set(false);
         if (res.message === 'success' && res.token) {
           this._CookieService.set('token', res.token, { path: '/', sameSite: 'Lax' });
+          this._AuthService.decodeToken()
           void this._Router.navigate(['/home']);
+
         } else {
           this.resMassage.set('Unable to sign in. Please try again.');
         }

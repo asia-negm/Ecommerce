@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from "jwt-decode";
+import { LoggedUser } from '../../models/logged-user.IloggedUser';
 
 
 export interface SignUpData {
@@ -27,7 +28,7 @@ export class AuthService {
 
 
   isLogging = signal<boolean>(false);
-  userOnfo = signal<any>('')
+  userOnfo = signal<LoggedUser>( {} as LoggedUser)
 
   signUp(formData: SignUpData):Observable<any>{
     return this._HttpClient.post(`${environment.baseURL}/api/v1/auth/signup` , formData)

@@ -4,6 +4,7 @@ import { Flowbite } from '../../../core/services/flowbite/flowbite';
 import { initFlowbite } from 'flowbite';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../../core/services/Auth/auth.service';
+import { LoggedUser } from '../../../core/models/logged-user.IloggedUser';
 
 @Component({
   imports: [RouterLink , RouterLinkActive],
@@ -41,5 +42,6 @@ export class NavbarComponent implements OnInit   {
   logOut(){
     this._CookieService.delete('userToken');
     this._AuthService.isLogging.set(false);
+    this._AuthService.userOnfo.set( {} as LoggedUser)
   }
 }

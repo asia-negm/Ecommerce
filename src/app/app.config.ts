@@ -6,10 +6,13 @@ import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/ht
 import {CookieService} from 'ngx-cookie-service';
 import { headerInterceptor } from './core/services/flowbite/interceptors/header/header-interceptor';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { provideToastr } from 'ngx-toastr';
+
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideToastr(),
     importProvidersFrom(CookieService ,CarouselModule),
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(withXhr() , withInterceptors([headerInterceptor])),

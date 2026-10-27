@@ -13,6 +13,11 @@ export const routes: Routes = [
     title: 'Fresh-Cart | Shop'
   },
   {
+    path: 'cart',
+    loadComponent: () => import('./cart/cart.component').then(m => m.CartComponent),
+    title: 'Fresh-Cart | Shopping Cart'
+  },
+  {
     path: 'brands',
     loadComponent: () => import('./brands/brands.component').then(m => m.BrandsComponent),
     title: 'Fresh-Cart | Brands'

@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import {AbstractControl, FormControl,FormGroup, ReactiveFormsModule, Validators,} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../core/services/Auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
@@ -11,6 +12,7 @@ import { AuthService } from '../core/services/Auth/auth.service';
 })
 export class RegisterComponent {
   constructor(private _AuthService: AuthService, private _Router: Router) {}
+  // private _ToastrService= inject(ToastrService)
   resMassage = signal('');
   isLoading = signal(false);
   registerForm: FormGroup = new FormGroup({
@@ -48,6 +50,7 @@ export class RegisterComponent {
         this.isLoading.set(false);
         if (res.message === 'success') {
           void this._Router.navigate(['/login']);
+          // this._ToastrService.er
         }
       },
       error: (err) => {

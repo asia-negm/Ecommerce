@@ -20,13 +20,11 @@ export class CartService {
   RemoveProductFromCart(p_id:string):Observable<any>{
     return this._HttpClient.delete(`${environment.baseURL}/api/v2/cart/${p_id}` )
   }
-
   ClearUserCart():Observable<any>{
     return this._HttpClient.delete(`${environment.baseURL}/api/v2/cart/` )
   }
   ApplyCouponToCart(coupon:string):Observable<any>{
     return this._HttpClient.put(`${environment.baseURL}/api/v2/cart/applyCoupon` , {"couponName":coupon})
   }
-
 
 }

@@ -44,10 +44,18 @@ export class CartComponent implements OnInit {
   removeFromCart(p_id:string){
     this._CartService.RemoveProductFromCart(p_id).subscribe({
       next:(res)=>{
-              this._ToastrService.remove(res.message)
+              this._ToastrService.warning(res.message , ' Remove product ')
               this.CartDetails.set(res)
 
       }
+    })
+  }
+  clearProducts(){
+    this._CartService.ClearUserCart().subscribe({
+    next:(res)=>{
+         this._ToastrService.warning(res.message , 'Clear all ')
+              this.CartDetails.set(res)
+    }
     })
   }
 }

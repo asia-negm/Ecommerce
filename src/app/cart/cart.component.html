@@ -38,7 +38,7 @@
           }
           <div class="flex items-center justify-between px-1 py-2 text-[11px]">
             <a routerLink="/shop" class="text-green-700 hover:text-green-900"><i class="fa-solid fa-arrow-left mr-1"></i>Continue Shopping</a>
-            <button class="text-slate-400 hover:text-red-500" type="button" ><i class="fa-regular fa-trash-can mr-1"></i>Clear all items</button>
+            <button (click)="clearProducts()" class="text-slate-400 hover:text-red-500" type="button" ><i class="fa-regular fa-trash-can mr-1"></i>Clear all items</button>
           </div>
         </section>
 

@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../core/services/products.service';
 import { IProducts } from '../core/models/product/iproducts.interface';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CartService } from '../core/services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -38,6 +40,8 @@ export class PDetailsComponent implements OnInit{
   }
   private _ActivatedRoute= inject(ActivatedRoute);
   private _ProductsService= inject(ProductsService);
+  private _CartService= inject(CartService);
+  private _ToastrService= inject(ToastrService);
   pDetails =signal<IProducts>(  {} as IProducts)
   pId =signal<string>('')
 
@@ -60,5 +64,13 @@ export class PDetailsComponent implements OnInit{
     }
   })
   }
+
+  addToProduct(p_id:string){
+  this._CartService.AddProductToCart(p_id).subscribe({
+    next:(res)=>{
+      this._ToastrService.success(res.message , 'Add To Cart')
+    }
+  })
+}
 
 }

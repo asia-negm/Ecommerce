@@ -12,9 +12,9 @@
       @for(product of  products() ; track product._id ){
         @if(product.ratingsAverage > 4){
 
-          <div [routerLink]="['/p-details' , product.id]"
-              class="group relative bg-white border border-gray-100  rounded-2xl p-3.5 shadow-xs hover:shadow-md transition-shadow duration-300 flex flex-col justify-between">
-              <!-- Quick Action Icons -->
+          <div class="group relative bg-white border border-gray-100  rounded-2xl p-3.5 shadow-xs hover:shadow-md transition-shadow duration-300 flex flex-col justify-between">
+           <div [routerLink]="['/p-details' , product.id]">
+               <!-- Quick Action Icons -->
               <div class="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
                   <button type="button" aria-label="Add to Wishlist"
                       class="w-7 h-7 bg-white dark:bg-gray-700 rounded-full border border-gray-100 dark:border-gray-600 shadow-xs flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-200 transition-colors">
@@ -58,13 +58,15 @@
                   </div>
 
                   <!-- Price & Add to Cart -->
-                  <div class="flex items-center justify-between mt-3 pt-1">
-                      <span class="text-base font-bold text-gray-900 dark:text-white">{{product.price |currency:'GBP'}}</span>
-                      <button type="button" aria-label="Add to cart"
-                          class="w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white flex items-center justify-center transition-all shadow-xs cursor-pointer">
-                          <i class="fa-solid fa-plus text-xs"></i>
-                      </button>
-                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between mt-3 pt-1">
+                  <span class="text-base font-bold text-gray-900 dark:text-white">{{product.price |currency:'GBP'}}</span>
+                  <button (click)="addToProduct(product._id)" type="button" aria-label="Add to cart"
+                      class="w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white flex items-center justify-center transition-all shadow-xs cursor-pointer">
+                      <i class="fa-solid fa-plus text-xs"></i>
+                  </button>
               </div>
           </div>
         }

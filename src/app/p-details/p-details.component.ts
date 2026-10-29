@@ -69,6 +69,8 @@ export class PDetailsComponent implements OnInit{
   this._CartService.AddProductToCart(p_id).subscribe({
     next:(res)=>{
       this._ToastrService.success(res.message , 'Add To Cart')
+            this._CartService.count.set(res.numOfCartItems)
+
     }
   })
 }

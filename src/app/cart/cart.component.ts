@@ -26,4 +26,14 @@ export class CartComponent implements OnInit {
     })
   }
 
+  updateCartCount(p_id:string ,count:number){
+    this._CartService.UpdateCartProductQuantity(p_id , count).subscribe({
+      next:(res)=>{
+  console.log(res);
+             this.CartDetails.set(res)
+
+      }
+    })
+  }
+
 }

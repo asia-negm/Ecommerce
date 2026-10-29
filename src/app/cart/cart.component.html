@@ -12,7 +12,7 @@
     @if (CartDetails().data && CartDetails().data.products.length > 0) {
       <div class="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_310px] lg:gap-5">
         <section class="min-w-0" aria-label="Cart items">
-          @for (item of CartDetails().data.products; track item._id) {
+          @for (item of CartDetails().data.products; track item.product._id) {
             <article class="mb-2.5 grid grid-cols-[64px_minmax(0,1fr)] items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:grid-cols-[76px_minmax(0,1fr)_auto] sm:gap-3.5">
               <div class="grid h-[72px] w-16 place-items-center overflow-hidden rounded-lg border border-slate-100 bg-slate-50 sm:h-[78px] sm:w-[72px]"><img class="h-full w-full object-contain" [src]="item.product.imageCover" [alt]="item.product.title"></div>
               <div class="min-w-0">
@@ -23,9 +23,9 @@
               </div>
               <div class="col-start-2 flex w-full items-center gap-2.5 sm:col-start-auto sm:w-auto sm:gap-3.5">
                 <div class="flex h-7 overflow-hidden rounded-md border border-slate-200" [attr.aria-label]="'Quantity for ' + item.product.title">
-                  <button class="w-7 bg-white text-slate-600 hover:bg-slate-50 disabled:text-slate-300" type="button" >−</button>
+                  <button (click)="updateCartCount(item.product._id ,item.count-1)" class="w-7 bg-white text-slate-600 hover:bg-slate-50 disabled:text-slate-300" type="button" >−</button>
                   <span class="grid min-w-7 place-items-center text-xs">{{ item.product.quantity }}</span>
-                  <button class="w-7 bg-green-600 text-white hover:bg-green-700" type="button" aria-label="Increase quantity">+</button>
+                  <button (click)="updateCartCount(item.product._id ,item.count+1)" class="w-7 bg-green-600 text-white hover:bg-green-700" type="button" aria-label="Increase quantity">+</button>
                 </div>
                 <div class="ml-auto min-w-[52px] text-right sm:ml-0"><small class="block text-[9px] text-slate-400">Total</small><strong class="text-sm">{{ item.price * item.product.quantity }}<small class="text-[9px] font-normal text-slate-400"> EGP</small></strong></div>
                 <button class="grid size-7 shrink-0 place-items-center rounded-md border border-red-100 bg-red-50 text-red-500 hover:bg-red-100" type="button"  [attr.aria-label]="'Remove ' + item.product.title"><i class="fa-regular fa-trash-can text-xs"></i></button>

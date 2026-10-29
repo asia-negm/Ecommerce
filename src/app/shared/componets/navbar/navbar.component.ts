@@ -5,6 +5,7 @@ import { initFlowbite } from 'flowbite';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../../core/services/Auth/auth.service';
 import { LoggedUser } from '../../../core/models/logged-user.IloggedUser';
+import { CartService } from '../../../core/services/cart/cart.service';
 
 @Component({
   imports: [RouterLink , RouterLinkActive],
@@ -16,17 +17,16 @@ export class NavbarComponent implements OnInit   {
   private _Flowbite= inject(Flowbite);
   private _AuthService =inject(AuthService);
   private _CookieService = inject(CookieService);
+  private _CartService = inject(CartService)
   isLogged = computed( ()=> this._AuthService.isLogging() )
   userDetails = computed( ()=> this._AuthService.userOnfo)
-
-
-
-
+  cartBage = computed( ()=> this._CartService.count())
 
    ngOnInit(): void {
     if(this._CookieService.get('userToken')){
       this._AuthService.isLogging.set(true)
       this._AuthService.decodeToken()
+      this._CartService.getCount()
     }
     this._Flowbite.loadFlowbite((flowbite) => {
       initFlowbite();

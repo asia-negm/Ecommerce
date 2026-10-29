@@ -48,6 +48,11 @@ export const routes: Routes = [
     title: 'Fresh-Cart | '
   },
   {
+    path: 'payment/:id',
+    loadComponent: () => import('./features/payment/payment.component').then(m => m.PaymentComponent),
+    title: 'Fresh-Cart | Paymant '
+  },
+  {
     path: '**',
     loadComponent: () => import('./shared/componets/wild-card/wild-card.component').then(m => m.WildCardComponent),
     title: 'Fresh-Cart | Error'

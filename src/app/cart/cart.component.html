@@ -23,12 +23,16 @@
               </div>
               <div class="col-start-2 flex w-full items-center gap-2.5 sm:col-start-auto sm:w-auto sm:gap-3.5">
                 <div class="flex h-7 overflow-hidden rounded-md border border-slate-200" [attr.aria-label]="'Quantity for ' + item.product.title">
-                  <button (click)="updateCartCount(item.product._id ,item.count-1)" class="w-7 bg-white text-slate-600 hover:bg-slate-50 disabled:text-slate-300" type="button" >−</button>
-                  <span class="grid min-w-7 place-items-center text-xs">{{ item.product.quantity }}</span>
+                  @if(item.count > 1){
+
+                    <button (click)="updateCartCount(item.product._id ,item.count-1)" class="w-7 bg-white text-slate-600 hover:bg-slate-50 disabled:text-slate-300" type="button" >−</button>
+                  }
+                  <span class="grid min-w-7 place-items-center text-xs">{{ item.count }}</span>
                   <button (click)="updateCartCount(item.product._id ,item.count+1)" class="w-7 bg-green-600 text-white hover:bg-green-700" type="button" aria-label="Increase quantity">+</button>
                 </div>
                 <div class="ml-auto min-w-[52px] text-right sm:ml-0"><small class="block text-[9px] text-slate-400">Total</small><strong class="text-sm">{{ item.price * item.product.quantity }}<small class="text-[9px] font-normal text-slate-400"> EGP</small></strong></div>
-                <button class="grid size-7 shrink-0 place-items-center rounded-md border border-red-100 bg-red-50 text-red-500 hover:bg-red-100" type="button"  [attr.aria-label]="'Remove ' + item.product.title"><i class="fa-regular fa-trash-can text-xs"></i></button>
+
+                <button (click)="removeFromCart(item.product._id)" class="grid size-7 shrink-0 place-items-center rounded-md border border-red-100 bg-red-50 text-red-500 hover:bg-red-100" type="button"  [attr.aria-label]="'Remove ' + item.product.title"><i class="fa-regular fa-trash-can text-xs"></i></button>
               </div>
             </article>
           }

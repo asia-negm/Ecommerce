@@ -1,11 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { OrdersService } from '../../core/services/Orders/orders.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { form, validate } from '@angular/forms/signals';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  imports: [],
+  imports: [ReactiveFormsModule],
   selector: 'app-payment',
   styleUrl: './payment.component.css',
   templateUrl: './payment.component.html',
@@ -26,11 +25,16 @@ checkOut = new FormGroup({
   postalCode: new FormControl(null , Validators.required)
 })
 
-// submitFormDetails(){
-//   if(this.checkOut.valid){
-//     this._OrdersService.Checkoutsession(this.cartId)
-//   }
-// }
+submitFormDetails(){
+  if(this.checkOut.valid){
+    this._OrdersService.CheckoutSession(this.cartId() , this.checkOut.value).subscribe({
+      next:(res)=>{
+        console.log(res)
+        window.open(res.session.ult , '_self')
+      }
+    })
+  }
+}
 
 }
 

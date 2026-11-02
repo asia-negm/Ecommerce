@@ -1,9 +1,43 @@
-<div>
-  <app-home-slider></app-home-slider>
-</div>
-<div>
-  <app-home-category></app-home-category>
-</div>
-<div>
-  <app-home-products></app-home-products>
-</div>
+<app-home-slider></app-home-slider>
+
+<section class="bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
+  <div class="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div class="flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+      <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-blue-50 text-2xl text-blue-500"><i class="fa-solid fa-truck"></i></span>
+      <div><h3 class="font-bold text-slate-900">Free Shipping</h3><p class="text-sm text-slate-500">On orders over 500 EGP</p></div>
+    </div>
+    <div class="flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+      <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-emerald-50 text-2xl text-emerald-500"><i class="fa-solid fa-shield-halved"></i></span>
+      <div><h3 class="font-bold text-slate-900">Secure Payment</h3><p class="text-sm text-slate-500">100% secure transactions</p></div>
+    </div>
+    <div class="flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+      <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-orange-50 text-2xl text-orange-500"><i class="fa-solid fa-rotate-left"></i></span>
+      <div><h3 class="font-bold text-slate-900">Easy Returns</h3><p class="text-sm text-slate-500">14-day return policy</p></div>
+    </div>
+    <div class="flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+      <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-purple-50 text-2xl text-purple-500"><i class="fa-solid fa-headset"></i></span>
+      <div><h3 class="font-bold text-slate-900">24/7 Support</h3><p class="text-sm text-slate-500">Dedicated support team</p></div>
+    </div>
+  </div>
+</section>
+
+<app-home-category></app-home-category>
+
+<section class="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-8 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-12">
+  <article class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 to-emerald-700 p-8 text-white sm:p-10">
+    <span class="inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">🔥&nbsp; Deal of the Day</span>
+    <h2 class="mt-5 text-3xl font-extrabold sm:text-4xl">Fresh Organic Fruits</h2>
+    <p class="mt-3 text-lg text-white/90">Get up to 40% off on selected organic fruits</p>
+    <div class="mt-5 flex flex-wrap items-center gap-4"><strong class="text-4xl font-extrabold">40% OFF</strong><span>Use code: <b>ORGANIC40</b></span></div>
+    <a href="/shop" class="mt-7 inline-flex items-center gap-3 rounded-full bg-white px-7 py-3 text-lg font-semibold text-emerald-700 transition hover:-translate-y-0.5 hover:shadow-lg">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+  </article>
+  <article class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500 to-rose-500 p-8 text-white sm:p-10">
+    <span class="inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">✨&nbsp; New Arrivals</span>
+    <h2 class="mt-5 text-3xl font-extrabold sm:text-4xl">Exotic Vegetables</h2>
+    <p class="mt-3 text-lg text-white/90">Discover our latest collection of premium vegetables</p>
+    <div class="mt-5 flex flex-wrap items-center gap-4"><strong class="text-4xl font-extrabold">25% OFF</strong><span>Use code: <b>FRESH25</b></span></div>
+    <a href="/shop" class="mt-7 inline-flex items-center gap-3 rounded-full bg-white px-7 py-3 text-lg font-semibold text-orange-600 transition hover:-translate-y-0.5 hover:shadow-lg">Explore Now <i class="fa-solid fa-arrow-right"></i></a>
+  </article>
+</section>
+
+<app-home-products></app-home-products>

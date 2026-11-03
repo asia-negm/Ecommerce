@@ -5,6 +5,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import { headerInterceptor } from './core/services/flowbite/interceptors/header/header-interceptor';
+import { errorInterceptor } from './core/services/flowbite/interceptors/error/error-interceptor';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { provideToastr } from 'ngx-toastr';
 
@@ -15,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideToastr(),
     importProvidersFrom(CookieService ,CarouselModule),
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withXhr() , withInterceptors([headerInterceptor])),
+    provideHttpClient(withXhr() , withInterceptors([headerInterceptor , errorInterceptor])),
     provideRouter(routes , withViewTransitions() , withInMemoryScrolling({scrollPositionRestoration:'top' , anchorScrolling:'enabled'})), provideClientHydration()
   ]
 };

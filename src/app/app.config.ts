@@ -5,16 +5,18 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import { headerInterceptor } from './core/services/flowbite/interceptors/header/header-interceptor';
-import { errorInterceptor } from './core/services/flowbite/interceptors/error/error-interceptor';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { provideToastr } from 'ngx-toastr';
+import { errorInterceptor } from './core/interceptors/error-interceptor';
+import { ngxSpinnerInterceptor, NgxSpinnerModule } from "ngx-spinner";
+
 
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideToastr(),
-    importProvidersFrom(CookieService ,CarouselModule),
+    importProvidersFrom(CookieService ,CarouselModule ,NgxSpinnerModule),
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(withXhr() , withInterceptors([headerInterceptor , errorInterceptor])),
     provideRouter(routes , withViewTransitions() , withInMemoryScrolling({scrollPositionRestoration:'top' , anchorScrolling:'enabled'})), provideClientHydration()

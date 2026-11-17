@@ -28,6 +28,11 @@ export const routes: Routes = [
     title: 'Fresh-Cart | Categories'
   },
   {
+    path: 'shop',
+    loadComponent: () => import('./features/shop/shop/shop.component').then(m => m.ShopComponent),
+    title: 'Fresh-Cart | shop'
+  },
+  {
     path: 'login',
     loadComponent: () => import('./login/login.component').then(m => m.LoginComponent),
     title: 'Fresh-Cart | Login'

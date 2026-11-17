@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, input, InputSignal, OnInit, signal } from '@angular/core';
 import { ProductsService } from '../../../../core/services/products.service';
 import { IProducts } from '../../../../core/models/product/iproducts.interface';
 import { CurrencyPipe } from '@angular/common';
@@ -6,29 +6,39 @@ import { RouterLink } from '@angular/router';
 import { CartService } from '../../../../core/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
+import {  NgxSpinnerService } from 'ngx-spinner';
+import { AllProductComponent } from '../../../../shared/componets/allProduct/all-product/all-product.component';
 
 @Component({
-  imports: [CurrencyPipe, RouterLink],
+  imports: [CurrencyPipe, RouterLink, AllProductComponent],
   selector: 'app-home-products',
   styleUrl: './home-products.component.css',
   templateUrl: './home-products.component.html',
 })
 export class HomeProductsComponent implements OnInit{
-  private _ProductsService= inject(ProductsService);
+  private _ProductsService = inject(ProductsService);
   private _CartService = inject(CartService)
-  private _ToastrService =inject(ToastrService)
-  private _CookieService=inject(CookieService)
+  private _ToastrService = inject(ToastrService)
+  private _CookieService = inject(CookieService)
+  private _NgxSpinnerService = inject(NgxSpinnerService)
   products = signal<IProducts[]>([]);
+
+    flag:InputSignal<boolean> = input.required()
+
 
 ngOnInit(): void {
  this.GetAllProducts()
 }
 
 GetAllProducts(){
+  this._NgxSpinnerService.show()
   this._ProductsService.GetAllProducts().subscribe({
     next:(res)=>{
       console.log(res)
       this.products.set(res.data)
+        this._NgxSpinnerService.hide()
+
+
     },
     error:(err)=> {
       console.log(err)
@@ -63,5 +73,6 @@ addToProduct(p_id:string){
     }
   }
 }
+
 
 }

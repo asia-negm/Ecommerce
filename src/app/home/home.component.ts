@@ -4,7 +4,7 @@ import { HomeCategoryComponent } from './component/home-slider/home-category/hom
 import { HomeProductsComponent } from './component/home-slider/home-products/home-products.component';
 
 @Component({
-  imports: [HomeSliderComponent , HomeCategoryComponent , HomeProductsComponent],
+  imports: [HomeSliderComponent , HomeCategoryComponent , HomeProductsComponent ,HomeProductsComponent],
   selector: 'app-home',
   styleUrl: './home.component.css',
   templateUrl: './home.component.html',
